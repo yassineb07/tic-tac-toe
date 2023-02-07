@@ -1,0 +1,45 @@
+:root {
+  font-family: Inter, -apple-system, system-ui, 'Segoe UI', Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+}
+
+body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  height: 15%;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+header .title {
+  color: #1c1917;
+  font-size: 4rem;
+  font-weight: 900;
+}
+main {
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .game-board {
+  height: 60%;
+  width: 30%;
+  border: 2px black solid;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.game-board-cell {
+  border: 2px solid black;
+}
