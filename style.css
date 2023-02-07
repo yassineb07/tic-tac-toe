@@ -42,4 +42,9 @@ main .game-board {
 
 .game-board-cell {
   border: 2px solid black;
+  font-size: 6rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
