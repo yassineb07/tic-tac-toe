@@ -48,3 +48,27 @@ main .game-board {
   justify-content: center;
   align-items: center;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
+}
+.modal-content {
+  margin: 16% auto;
+  height: 30%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-over-message {
+  color: #f9fafb;
+  font-size: 4rem;
+  font-weight: 400;
+  text-align: center;
+}

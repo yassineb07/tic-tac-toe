@@ -35,14 +35,17 @@ const game = (() => {
       combination.every((el) => el === combination[0] && el !== null)
     );
   };
+
   const checkTie = () => boardArray.every((el) => el !== null);
 
   const isGameOver = () => {
     if (checkWin()) {
-      console.log(`winner : ${currentPlayer.getName()}`);
-    } else if (checkTie()) {
-      console.log('Tie');
+      return currentPlayer.getName();
     }
+    if (checkTie()) {
+      return 'Tie';
+    }
+    return undefined;
   };
 
   const play = (target) => {
@@ -51,17 +54,17 @@ const game = (() => {
       return;
     }
     boardArray.splice(index, 1, currentPlayer.getSymbol());
-    isGameOver();
-    switchTurn(currentPlayer);
   };
 
-  return { play, boardArray };
+  return { boardArray, currentPlayer, play, isGameOver, switchTurn };
 })();
 
 const gameBoard = (() => {
   // cache DOM
   const board = document.querySelector('.game-board');
   const boardCells = document.querySelectorAll('.game-board-cell');
+  const gameOverMessage = document.querySelector('.game-over-message');
+  const modal = document.querySelector('.modal');
 
   const render = (array) => {
     array.forEach((value, index) => {
@@ -74,9 +77,21 @@ const gameBoard = (() => {
     });
   };
 
+  const gameOver = () => {
+    const g = game.isGameOver();
+    if (g === undefined) return;
+    if (g === 'Tie') {
+      gameOverMessage.textContent = ` ${g}!`;
+    } else {
+      gameOverMessage.textContent = `Winner is : ${g}`;
+    }
+    modal.style.display = 'block';
+  };
   // bind events
   board.addEventListener('click', (e) => {
     game.play(e.target);
+    gameOver();
+    game.switchTurn(game.currentPlayer);
     render(game.boardArray);
   });
 })();
