@@ -63,12 +63,29 @@ main .game-board {
   height: 30%;
   width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 .game-over-message {
   color: #f9fafb;
   font-size: 4rem;
   font-weight: 400;
   text-align: center;
+}
+
+.restart-btn {
+  font-size: 2.5rem;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background-color: rgba(0, 0, 0);
+  color: white;
+  border-color: white;
+  transition: all 0.3s;
 }

@@ -56,7 +56,14 @@ const game = (() => {
     boardArray.splice(index, 1, currentPlayer.getSymbol());
   };
 
-  return { boardArray, currentPlayer, play, isGameOver, switchTurn };
+  const reset = () => {
+    boardArray.forEach((element, index) => {
+      boardArray[index] = null;
+    });
+    Object.assign(currentPlayer, player1);
+  };
+
+  return { boardArray, currentPlayer, play, isGameOver, switchTurn, reset };
 })();
 
 const gameBoard = (() => {
@@ -65,6 +72,7 @@ const gameBoard = (() => {
   const boardCells = document.querySelectorAll('.game-board-cell');
   const gameOverMessage = document.querySelector('.game-over-message');
   const modal = document.querySelector('.modal');
+  const restartBtn = document.querySelector('.restart-btn');
 
   const render = (array) => {
     array.forEach((value, index) => {
@@ -87,11 +95,19 @@ const gameBoard = (() => {
     }
     modal.style.display = 'block';
   };
+  const resetGame = () => {
+    game.reset();
+    modal.style.display = 'none';
+  };
   // bind events
   board.addEventListener('click', (e) => {
     game.play(e.target);
     gameOver();
     game.switchTurn(game.currentPlayer);
+    render(game.boardArray);
+  });
+  restartBtn.addEventListener('click', (e) => {
+    resetGame();
     render(game.boardArray);
   });
 })();
