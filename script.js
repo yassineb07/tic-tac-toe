@@ -40,6 +40,7 @@ const game = (() => {
 
   const isGameOver = () => {
     if (checkWin()) {
+      switchTurn(currentPlayer);
       return currentPlayer.getName();
     }
     if (checkTie()) {
@@ -54,6 +55,7 @@ const game = (() => {
       return;
     }
     boardArray.splice(index, 1, currentPlayer.getSymbol());
+    switchTurn(currentPlayer);
   };
 
   const reset = () => {
@@ -63,7 +65,7 @@ const game = (() => {
     Object.assign(currentPlayer, player1);
   };
 
-  return { boardArray, currentPlayer, play, isGameOver, switchTurn, reset };
+  return { boardArray, currentPlayer, play, isGameOver, reset };
 })();
 
 const gameBoard = (() => {
@@ -73,6 +75,8 @@ const gameBoard = (() => {
   const gameOverMessage = document.querySelector('.game-over-message');
   const modal = document.querySelector('.modal');
   const restartBtn = document.querySelector('.restart-btn');
+  const player1 = document.querySelector('.player1');
+  const player2 = document.querySelector('.player2');
 
   const render = (array) => {
     array.forEach((value, index) => {
@@ -95,18 +99,33 @@ const gameBoard = (() => {
     }
     modal.style.display = 'block';
   };
+
   const resetGame = () => {
     game.reset();
     modal.style.display = 'none';
+    player1.classList.remove('current-player');
+    player2.classList.remove('current-player');
   };
+
+  const currentTurn = () => {
+    if (game.currentPlayer.getName() === 'player1') {
+      player1.classList.add('current-player');
+      player2.classList.remove('current-player');
+    } else {
+      player2.classList.add('current-player');
+      player1.classList.remove('current-player');
+    }
+  };
+
   // bind events
   board.addEventListener('click', (e) => {
     game.play(e.target);
+    currentTurn();
     gameOver();
-    game.switchTurn(game.currentPlayer);
     render(game.boardArray);
   });
-  restartBtn.addEventListener('click', (e) => {
+
+  restartBtn.addEventListener('click', () => {
     resetGame();
     render(game.boardArray);
   });
