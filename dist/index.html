@@ -8,55 +8,55 @@
     <!-- <link rel="stylesheet" href="./style.css" /> -->
     <script src="./main.js" defer></script>
   </head>
-  <body>
-    <header>
-      <div class="title">Tic Tac Toe</div>
+  <body class="h-screen">
+    <header class="h-1/6 flex justify-center items-center shadow-xl">
+      <div class="title text-5xl font-bold">Tic Tac Toe</div>
     </header>
-    <main>
-      <div class="players-info">
-        <div class="player1">player1</div>
-        <div class="player2">player2</div>
+    <main class="h-5/6 flex flex-col items-center pt-8">
+      <div class="players-info grid grid-cols-2 gap-64 mb-10">
+        <div class="player1 text-5xl">player1</div>
+        <div class="player2 text-5xl">player2</div>
       </div>
-      <div class="game-board w-fit grid grid-cols-3">
+      <div id="gameBoard" class="game-board w-fit grid grid-cols-3">
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="0"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="1"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="2"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="3"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="4"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="5"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="6"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="7"
         ></div>
         <div
-          class="game-board-cell w-14 h-14 border-2 border-black"
+          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
           id="8"
         ></div>
       </div>
     </main>
-    <div class="modal">
+    <div class="modal hidden">
       <div class="modal-content">
         <div class="game-over-message">Tie!</div>
         <button class="restart-btn">Restart</button>
