@@ -1,19 +1,6 @@
-import Player from './players';
+import { player1, currentPlayer } from './players';
 
 const boardArray = [null, null, null, null, null, null, null, null, null];
-
-const player1 = Player('player1', 'X');
-const player2 = Player('player2', 'O');
-const currentPlayer = {};
-Object.assign(currentPlayer, player1);
-
-const switchTurn = (player) => {
-  if (player.getName === player1.getName) {
-    Object.assign(player, player2);
-  } else {
-    Object.assign(player, player1);
-  }
-};
 
 const checkWin = () => {
   const winingCombinations = [
@@ -35,7 +22,6 @@ const checkTie = () => boardArray.every((el) => el !== null);
 
 const isGameOver = () => {
   if (checkWin()) {
-    switchTurn(currentPlayer);
     return currentPlayer.getName();
   }
   if (checkTie()) {
@@ -45,12 +31,8 @@ const isGameOver = () => {
 };
 
 const play = (target) => {
-  const index = +target.getAttribute('id');
-  if (boardArray[index] === 'O' || boardArray[index] === 'X') {
-    return;
-  }
+  const index = +target.dataset.cellId;
   boardArray.splice(index, 1, currentPlayer.getSymbol());
-  switchTurn(currentPlayer);
 };
 
 const reset = () => {
@@ -60,4 +42,4 @@ const reset = () => {
   Object.assign(currentPlayer, player1);
 };
 
-export { boardArray, currentPlayer, play, isGameOver, reset };
+export { boardArray, play, isGameOver, reset };

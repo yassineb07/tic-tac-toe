@@ -5,62 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
     <script src="./main.js" defer></script>
   </head>
   <body class="h-screen">
     <header class="h-1/6 flex justify-center items-center shadow-xl">
-      <div class="title text-5xl font-bold">Tic Tac Toe</div>
+      <div class="text-5xl font-bold">Tic Tac Toe</div>
     </header>
-    <main class="h-5/6 flex flex-col items-center pt-8">
-      <div class="players-info grid grid-cols-2 gap-64 mb-10">
-        <div class="player1 text-5xl">player1</div>
-        <div class="player2 text-5xl">player2</div>
+    <main class="h-5/6 flex flex-col items-center">
+      <div class="grid grid-cols-2 gap-64 my-10">
+        <div id="player1" class="text-5xl"></div>
+        <div id="player2" class="text-5xl"></div>
       </div>
-      <div id="gameBoard" class="game-board w-fit grid grid-cols-3">
+      <div id="gameBoard" class="w-fit grid grid-cols-3">
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="0"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="0"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="1"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="1"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="2"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="2"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="3"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="3"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="4"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="4"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="5"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="5"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="6"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="6"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="7"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="7"
         ></div>
         <div
-          class="game-board-cell w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
-          id="8"
+          class="w-44 h-44 border-2 border-black flex justify-center items-center font-bold text-5xl"
+          data-cell-id="8"
         ></div>
+      </div>
+      <div
+        id="modal"
+        class="hidden h-full w-full absolute bg-black opacity-95 z-50"
+      >
+        <div class="text-white text-center w-1/5 mx-auto mt-32">
+          <div id="gameOverMessage" class="text-5xl mb-2"></div>
+          <button
+            id="restartBtn"
+            class="px-4 py-2 text-3xl bg-white text-black border-2 border-black hover:bg-black hover:text-white hover:border-white"
+          >
+            Restart
+          </button>
+        </div>
       </div>
     </main>
-    <div class="modal hidden">
-      <div class="modal-content">
-        <div class="game-over-message">Tie!</div>
-        <button class="restart-btn">Restart</button>
-      </div>
-    </div>
   </body>
 </html>
