@@ -1,14 +1,14 @@
-import { boardArray, play, isGameOver, reset } from './game-board';
-import { player1, player2, currentPlayer, switchTurn } from './players';
+import { boardArray, play, isGameOver, reset } from "./game-board";
+import { player1, player2, currentPlayer, setCurrentPlayer } from "./players";
 
 // cache DOM
-const boardEl = document.getElementById('gameBoard');
+const boardEl = document.getElementById("gameBoard");
 const boardElCells = Array.from(boardEl.children);
-const gameOverMessage = document.getElementById('gameOverMessage');
-const modal = document.getElementById('modal');
-const restartBtn = document.getElementById('restartBtn');
-const player1El = document.getElementById('player1');
-const player2El = document.getElementById('player2');
+const gameOverMessage = document.getElementById("gameOverMessage");
+const modal = document.getElementById("modal");
+const restartBtn = document.getElementById("restartBtn");
+const player1El = document.getElementById("player1");
+const player2El = document.getElementById("player2");
 
 player1El.textContent = player1.getName();
 player2El.textContent = player2.getName();
@@ -26,46 +26,47 @@ const render = (array) => {
 const gameOver = () => {
   const g = isGameOver();
   if (g === undefined) return;
-  if (g === 'Tie') {
+  if (g === "Tie") {
     gameOverMessage.textContent = ` ${g}!`;
   } else {
     gameOverMessage.textContent = `Winner is : ${g}`;
   }
-  modal.classList.remove('hidden');
-  modal.classList.add('block');
+  modal.classList.remove("hidden");
+  modal.classList.add("block");
 };
 
 const resetGame = () => {
   reset();
-  modal.classList.remove('block');
-  modal.classList.add('hidden');
-  player1El.classList.remove('font-bold', 'text-blue-500');
-  player2El.classList.remove('font-bold', 'text-blue-500');
+  modal.classList.remove("block");
+  modal.classList.add("hidden");
+  player1El.classList.remove("font-bold", "text-blue-500");
+  player2El.classList.remove("font-bold", "text-blue-500");
 };
 
 const currentTurn = () => {
-  if (currentPlayer.getId() === 'player1') {
-    player1El.classList.add('font-bold', 'text-blue-500');
-    player2El.classList.remove('font-bold', 'text-blue-500');
+  if (currentPlayer.getId() === "player1") {
+    player1El.classList.add("font-bold", "text-blue-500");
+    player2El.classList.remove("font-bold", "text-blue-500");
   } else {
-    player2El.classList.add('font-bold', 'text-blue-500');
-    player1El.classList.remove('font-bold', 'text-blue-500');
+    player2El.classList.add("font-bold", "text-blue-500");
+    player1El.classList.remove("font-bold", "text-blue-500");
   }
 };
 
 // bind events
-boardEl.addEventListener('click', (e) => {
-  if (e.target.textContent === 'X' || e.target.textContent === 'O') return;
+boardEl.addEventListener("click", (e) => {
+  if (e.target.textContent === "X" || e.target.textContent === "O") return;
   play(e.target);
   render(boardArray);
   gameOver();
-  switchTurn(currentPlayer);
+  setCurrentPlayer(currentPlayer);
   currentTurn();
 });
 
-restartBtn.addEventListener('click', () => {
+restartBtn.addEventListener("click", () => {
   resetGame();
   render(boardArray);
+  currentTurn();
 });
 
-export default render;
+export { render, currentTurn };

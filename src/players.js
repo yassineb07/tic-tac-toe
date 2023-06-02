@@ -5,13 +5,12 @@ const Player = (id, name, symbol) => {
   return { getId, getName, getSymbol };
 };
 
-const player1 = Player('player1', 'PLAYER 1', 'X');
-const player2 = Player('player2', 'PLAYER 2', 'O');
+const player1 = Player("player1", "PLAYER 1", "X");
+const player2 = Player("player2", "PLAYER 2", "O");
 
 const currentPlayer = {};
-Object.assign(currentPlayer, player1);
 
-const switchTurn = (playerObj) => {
+const setCurrentPlayer = (playerObj) => {
   if (playerObj.getId === player1.getId) {
     Object.assign(playerObj, player2);
   } else {
@@ -19,4 +18,4 @@ const switchTurn = (playerObj) => {
   }
 };
 
-export { player1, player2, currentPlayer, switchTurn };
+export { player1, player2, currentPlayer, setCurrentPlayer };
